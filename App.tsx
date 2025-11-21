@@ -19,9 +19,10 @@ const App: React.FC = () => {
       const results = await fetchRoutes(origin, destination);
       setRoutes(results);
       setScreen('routes');
-    } catch (err) {
-      console.error(err);
-      setError("無法找到路線，請重試。");
+    } catch (err: any) {
+      console.error("Search Error:", err);
+      // Display the specific error message to help debugging (Mobile vs PC issues)
+      setError(err.message || "無法找到路線，請重試。");
     } finally {
       setIsLoading(false);
     }
@@ -45,9 +46,9 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen w-full max-w-md mx-auto bg-white shadow-2xl overflow-hidden relative">
       {error && (
-        <div className="absolute top-4 left-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50 flex justify-between items-center">
-          <span>{error}</span>
-          <button onClick={() => setError(null)} className="font-bold">×</button>
+        <div className="absolute top-4 left-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50 flex justify-between items-start shadow-lg">
+          <span className="text-sm break-words pr-2 flex-1">{error}</span>
+          <button onClick={() => setError(null)} className="font-bold text-red-500 p-1">×</button>
         </div>
       )}
 
