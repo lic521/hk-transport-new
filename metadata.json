@@ -1,0 +1,7 @@
+{
+  "name": "香港交通 AI",
+  "description": "智能香港公共交通路線規劃，由 Gemini 驅動。提供最佳港鐵及巴士路線，連同實時到站預測。",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
